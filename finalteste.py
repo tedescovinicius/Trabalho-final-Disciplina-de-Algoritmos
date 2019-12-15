@@ -22,7 +22,7 @@ def dados (l):
 	p1.telefone=input('Telefone:')
 	p1.nconta=input('Numero da conta:')
 	p1.lcredito= 1000.00
-	p1.saldo=input('Saldo da conta:')
+	p1.saldo=float(input('Saldo da conta:'))
 	
 	if (len(l) !=0):
 		for i in range (len(l)):
@@ -162,7 +162,7 @@ def excluiclientes(l):
     print('0 - Para cancelar a operação')
     r = int(input('>'))
     if(r == 1):
-        del(p1)
+        del(l[p1])
 def movimentaconta(l):
     print('Movimentações')
     print('1 - Realizar debito')
@@ -191,7 +191,7 @@ def movimentaconta(l):
                         l[i].saldo = 0.00
                         print('Saque realizado com sucesso')
                         print('Seu saldo atual é de R$ ',l[i].saldo)
-                        print('Seu limite de credito é de R$ ',round(l[i].limite, 2))
+                        print('Seu limite de credito é de R$ ',round(l[i].lcredito, 2))
                     else:
                         clear()
                         print('operação não foi realizada')
@@ -199,13 +199,13 @@ def movimentaconta(l):
             else:
                 print('CPF informado não foi localizado no sistema')
                 
-    if(op == 1):
+    if(op == 2):
         print('Cŕedito')
         c = int(input('Digite o CPF que deseja realizar a operação:'))
         for i in range(len(l)):
             if(l[i].cpf == c):
                 print('Digite o valor que deseja depositar')
-                val = int(input('-->'))
+                val = float(input('-->'))
                 if(l[i].lcredito == 1000):
                     l[i].saldo += val
                     print('Deposito realizado com sucesso')
